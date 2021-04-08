@@ -6,11 +6,100 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Prokes: Practice Strokes</title>
+
+    <style>
+        body {
+            height: 100vh;
+            margin: 0px;
+            padding: 0px;
+            font-family: Arial, Helvetica, sans-serif;
+
+            --darkest-color: #222324;
+            --darker-color: #444546;
+            --dark-color: #666768;
+            --neutral-color: #88898a;
+            --light-color: #aaabac;
+            --lighter-color: #cccdce;
+            --lightest-color: #eeefff;
+        }
+
+        #container {
+            display: grid;
+            grid-template-rows: 32px 1fr 24px;
+            margin: 0px;
+            padding: 0px;
+            height: 100%;
+        }
+
+        header {
+            background-color: var(--light-color);
+            color: var(--darkest-color);
+            padding: 1px 5px 1px 5px;
+            display: flex;
+            align-items: center;
+            justify-content: left;
+        }
+
+        .title {
+            height: 100%;
+            display: flex;
+            align-items: center;
+            font-weight: 600;
+        }
+
+        .round {
+            margin-left: 10px;
+        }
+
+        .stroke {
+            margin-left: 10px;
+        }
+
+        footer {
+            background-color: var(--light-color);
+        }
+
+        section {
+            background-color: firebrick;
+        }
+
+        #drawing {
+            margin: 0px;
+            padding: 0px;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: row;
+            background-color: var(--lighter-color);
+        }
+
+        .mainDrawing {
+            border: 3px solid var(--darker-color);
+        }
+    </style>
 </head>
 
 <body>
-    <script src="../node_modules/p5/lib/p5.min.js"></script>
-    <script src="../node_modules/p5/lib/addons/p5.sound.min.js"></script>
+    <div id="container">
+        <header>
+            <div class="title">Prokes: Practice Strokes</div>
+            <div class="round">
+                <span>Exercise Round</span>
+                <span id="exerciseRound">1/2</span>
+            </div>
+            <div class="stroke">
+                <span>Stroke #</span>
+                <span id="strokeNumber">1/2</span>
+            </div>
+        </header>
+        <div id="drawing">
+
+        </div>
+        <footer>blah</footer>
+    </div>
+    <!-- <script src="../node_modules/p5/lib/p5.min.js"></script> -->
+    <!-- <script src="../node_modules/p5/lib/addons/p5.sound.min.js"></script> -->
 </body>
 
 </html>
