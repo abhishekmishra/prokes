@@ -87,13 +87,34 @@ let mainSketch = function (s) {
     let currentPracticeStrokes = null;
     let practiceRound = 0;
 
-    s.blah = function() {
-        console.log('yo');
+    const exRndText = s.select('#exerciseRound');
+    const strokeNumText = s.select('#strokeNumber');
+
+    s.startStroke = function() {
+        inStroke = true;
+    }
+
+    s.endStroke = function () {
+        inStroke = false;
+        strokeCount += 1;
+        strokeNumText.elt.innerHTML = `${strokeCount}/${currentPracticeStrokes.numStrokes()}`
+        console.log(`stroke #${strokeCount} done.`);
+        if (strokeCount >= currentPracticeStrokes.numStrokes()) {
+            console.log(`This round is complete.`);
+            practiceRound += 1;
+            if (practiceRound >= practiceStrokesList.length) {
+                console.log(`All practice rounds complete.`);
+            } else {
+                s.setupRound();
+            }
+        }
     }
 
     s.setupRound = function () {
+        exRndText.elt.innerHTML = `${practiceRound + 1}/${practiceStrokesList.length}`;
         currentPracticeStrokes = practiceStrokesList[practiceRound];
         strokeCount = 0;
+        strokeNumText.elt.innerHTML = `${strokeCount}/${currentPracticeStrokes.numStrokes()}`
         s.background(150);
         currentPracticeStrokes.draw(s);
     }
@@ -102,7 +123,7 @@ let mainSketch = function (s) {
         const drawingNode = s.select("#drawing");
         const side = Math.min(drawingNode.width * 0.95, drawingNode.height * 0.95);
         s.resizeCanvas(side, side);
-        setupRound(s);
+        s.setupRound();
     }
 
     s.setup = function () {
@@ -116,25 +137,13 @@ let mainSketch = function (s) {
     s.draw = function () {
         if (s.mouseIsPressed === true) {
             if (!inStroke) {
-                inStroke = true;
-                // console.log('stroke start');
+                s.startStroke();
             }
             s.line(s.mouseX, s.mouseY, s.pmouseX, s.pmouseY);
             // strokeP5.line(s.mouseX, s.mouseY, s.pmouseX, s.pmouseY);
         } else {
             if (inStroke) {
-                inStroke = false;
-                strokeCount += 1;
-                console.log(`stroke #${strokeCount} done.`);
-                if (strokeCount >= currentPracticeStrokes.numStrokes()) {
-                    console.log(`This round is complete.`);
-                    practiceRound += 1;
-                    if (practiceRound >= practiceStrokesList.length) {
-                        console.log(`All practice rounds complete.`);
-                    } else {
-                        s.setupRound();
-                    }
-                }
+                s.endStroke();
             }
         }
     };
