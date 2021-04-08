@@ -1,0 +1,36 @@
+{
+  "name": "prokes",
+  "version": "0.0.1",
+  "description": "",
+  "private": true,
+  "scripts": {
+    "dev": "webpack --mode development",
+    "start": "webpack serve --mode development --open --port 8290",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/abhishekmishra/prokes.git"
+  },
+  "keywords": [],
+  "author": "Abhishek Mishra <abhishekmishra3@gmail.com>",
+  "license": "GPL 3.0",
+  "bugs": {
+    "url": "https://github.com/abhishekmishra/prokes/issues"
+  },
+  "homepage": "https://github.com/abhishekmishra/prokes#readme",
+  "devDependencies": {
+    "@babel/core": "^7.13.14",
+    "@babel/plugin-transform-runtime": "^7.13.10",
+    "@babel/preset-env": "^7.13.12",
+    "babel-loader": "^8.2.2",
+    "html-webpack-plugin": "^5.3.1",
+    "raw-loader": "^4.0.2",
+    "webpack": "^5.28.0",
+    "webpack-cli": "^4.6.0",
+    "webpack-dev-server": "^3.11.2"
+  },
+  "dependencies": {
+    "p5": "^1.3.0"
+  }
+}
