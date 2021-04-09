@@ -1,5 +1,7 @@
 const p5 = require("p5");
 
+import 'bootstrap/dist/js/bootstrap.bundle';
+
 class Stroke {
     _strokeWeight;
     _stroke;
@@ -63,15 +65,15 @@ class Lines extends Stroke {
 }
 
 let strokeColor = [
-    "#ffaa00",
-    "#00aaff",
-    0
+    "#eeefff",
+    "#cccdce",
+    "#222324"
 ];
 
 let strokeWidth = [
     30,
-    6,
-    1
+    10,
+    2
 ];
 
 let strokeList = [
@@ -80,6 +82,7 @@ let strokeList = [
 ];
 
 let mainSketch = function (s) {
+    let practiceOver = false;
     let inStroke = false;
     let strokeCount = 0;
 
@@ -90,7 +93,7 @@ let mainSketch = function (s) {
     const exRndText = s.select('#exerciseRound');
     const strokeNumText = s.select('#strokeNumber');
 
-    s.startStroke = function() {
+    s.startStroke = function () {
         inStroke = true;
     }
 
@@ -104,6 +107,7 @@ let mainSketch = function (s) {
             practiceRound += 1;
             if (practiceRound >= practiceStrokesList.length) {
                 console.log(`All practice rounds complete.`);
+                practiceOver = true;
             } else {
                 s.setupRound();
             }
@@ -111,12 +115,15 @@ let mainSketch = function (s) {
     }
 
     s.setupRound = function () {
-        exRndText.elt.innerHTML = `${practiceRound + 1}/${practiceStrokesList.length}`;
-        currentPracticeStrokes = practiceStrokesList[practiceRound];
-        strokeCount = 0;
-        strokeNumText.elt.innerHTML = `${strokeCount}/${currentPracticeStrokes.numStrokes()}`
-        s.background(150);
-        currentPracticeStrokes.draw(s);
+        if (!practiceOver) {
+            exRndText.elt.innerHTML = `${practiceRound + 1}/${practiceStrokesList.length}`;
+            currentPracticeStrokes = practiceStrokesList[practiceRound];
+            strokeCount = 0;
+            strokeNumText.elt.innerHTML = `${strokeCount}/${currentPracticeStrokes.numStrokes()}`
+            s.background(255);
+            currentPracticeStrokes.draw(s);
+            s.background("#ffffff88");
+        }
     }
 
     s.windowResized = function () {
@@ -135,6 +142,11 @@ let mainSketch = function (s) {
     };
 
     s.draw = function () {
+        if(practiceOver) {
+            s.background(255);
+            s.textAlign(s.CENTER);
+            s.text("Practice Complete", s.width/2, s.height/2);
+        }
         if (s.mouseIsPressed === true) {
             if (!inStroke) {
                 s.startStroke();

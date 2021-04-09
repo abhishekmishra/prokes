@@ -7,12 +7,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Prokes: Practice Strokes</title>
 
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
     <style>
         body {
             height: 100vh;
-            margin: 0px;
-            padding: 0px;
             font-family: Arial, Helvetica, sans-serif;
+
+            font-size: small;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
 
             --darkest-color: #222324;
             --darker-color: #444546;
@@ -20,43 +26,41 @@
             --neutral-color: #88898a;
             --light-color: #aaabac;
             --lighter-color: #cccdce;
-            --lightest-color: #eeefff;
-        }
-
-        #container {
-            display: grid;
-            grid-template-rows: 32px 1fr 24px;
-            margin: 0px;
-            padding: 0px;
-            height: 100%;
+            --lightest-color: #eeeff0;
+            --highlight-color: whitesmoke;
         }
 
         header {
-            background-color: var(--light-color);
+            background-color: var(--lighter-color);
             color: var(--darkest-color);
             padding: 1px 5px 1px 5px;
-            display: flex;
-            align-items: center;
-            justify-content: left;
         }
 
+        .score {
+            border-right: 1px solid var(--neutral-color);
+        }
+
+
         .title {
-            height: 100%;
             display: flex;
             align-items: center;
-            font-weight: 600;
+            border-right: 1px solid var(--neutral-color);
         }
 
         .round {
-            margin-left: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .stroke {
-            margin-left: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         footer {
-            background-color: var(--light-color);
+            background-color: var(--lighter-color);
         }
 
         section {
@@ -64,14 +68,11 @@
         }
 
         #drawing {
-            margin: 0px;
-            padding: 0px;
-            height: 100%;
             display: flex;
             justify-content: center;
             align-items: center;
             flex-direction: row;
-            background-color: var(--lighter-color);
+            background-color: var(--highlight-color);
         }
 
         .mainDrawing {
@@ -80,23 +81,39 @@
     </style>
 </head>
 
-<body>
-    <div id="container">
-        <header>
-            <div class="title">Prokes: Practice Strokes</div>
-            <div class="round">
-                <span>Exercise Round</span>
-                <span id="exerciseRound">1/2</span>
+<body class="m-0 p-0">
+    <div id="container" class="container min-vh-100 d-flex flex-column m-0 p-0">
+        <header class="row w-100 m-0 p-0">
+            <div class="title col-3 m-0 p-0 text-center align-middle">
+                <span class="m-1 text-center w-100">
+                    <h4>Prokes</h4>
+                </span>
             </div>
-            <div class="stroke">
-                <span>Stroke #</span>
-                <span id="strokeNumber">1/2</span>
+            <div class="score col-6 row m-0 p-0 text-center">
+                <span class="mt-1">
+                    <span>Round</span>
+                    <span class="badge bg-dark" id="exerciseRound">1/2</span>
+                    <span>Stroke</span>
+                    <span class="badge bg-dark" id="strokeNumber">1/2</span>
+                </span>
+            </div>
+            <div class="tools col-3 m-0 p-0 text-end">
+                <span class="">
+                    <span type="button" class="m-1 btn btn-secondary btn-sm pt-0 pb-0">
+                        <i class="bi bi-arrow-clockwise" style="font-size: 1rem;"></i>
+                    </span>
+                    <span type="button" class="m-1 btn btn-primary btn-sm pt-0 pb-0">
+                        <i class="bi bi-info-circle" style="font-size: 1rem;"></i>
+                    </span>
+                </span>
             </div>
         </header>
-        <div id="drawing">
+        <div id="drawing" class="row justify-content-center flex-grow-1 w-100 m-0 p-0">
 
         </div>
-        <footer>blah</footer>
+        <footer class="row w-100 m-0 p-0 ">
+            <span class="text-center w-100">Prokes: Practice Strokes (c) 2021 Abhishek Mishra</span>
+        </footer>
     </div>
     <!-- <script src="../node_modules/p5/lib/p5.min.js"></script> -->
     <!-- <script src="../node_modules/p5/lib/addons/p5.sound.min.js"></script> -->
