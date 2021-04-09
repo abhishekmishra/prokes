@@ -56,11 +56,11 @@ class Lines extends Stroke {
 
     _drawStrokes(s) {
         const dx = s.width / (this._numStrokes);
-        s.translate(dx / 2, 0);
+        s.translate(dx, 0);
         for (let i = 0; i < this._numStrokes; i++) {
             s.line(i * dx, -s.height, i * dx, 2 * s.height);
         }
-        s.translate(-dx / 2, 0);
+        s.translate(-dx, 0);
     }
 }
 
@@ -76,10 +76,16 @@ let strokeWidth = [
     2
 ];
 
-let strokeList = [
-    new Lines(strokeWidth, strokeColor, 2, 10),
-    new Lines(strokeWidth, strokeColor, 3, 25),
-];
+let strokeList = [];
+
+for (let i = 0; i < 10; i++) {
+    strokeList.push(new Lines(
+        strokeWidth,
+        strokeColor,
+        Math.floor(Math.random() * 10),
+        Math.floor(Math.random() * 45)
+    ));
+}
 
 let mainSketch = function (s) {
     let practiceOver = false;
@@ -142,10 +148,10 @@ let mainSketch = function (s) {
     };
 
     s.draw = function () {
-        if(practiceOver) {
+        if (practiceOver) {
             s.background(255);
             s.textAlign(s.CENTER);
-            s.text("Practice Complete", s.width/2, s.height/2);
+            s.text("Practice Complete", s.width / 2, s.height / 2);
         }
         if (s.mouseIsPressed === true) {
             if (!inStroke) {
