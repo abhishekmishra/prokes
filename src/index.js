@@ -64,6 +64,26 @@ class Lines extends Stroke {
     }
 }
 
+class Curves extends Stroke {
+    _troughs;
+
+    constructor(strokeWeight, stroke, curves = 3, troughs = 5, angle = 0) {
+        super(strokeWeight, stroke, angle);
+        this._numStrokes = curves;
+        this._troughs = troughs;
+    }
+
+    _drawStrokes(s) {
+        const dx = s.width / (this._numStrokes);
+        s.translate(dx, 0);
+        const amplitude = dx * 0.9;
+        for (let i = 0; i < this._numStrokes; i++) {
+            s.line(i * dx, -s.height, i * dx, 2 * s.height);
+        }
+        s.translate(-dx, 0);
+    }
+}
+
 let strokeColor = [
     "#eeefff",
     "#cccdce",
